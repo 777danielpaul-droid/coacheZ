@@ -15,7 +15,7 @@ export const trainingCardSchema = z.object({
   focus: z.array(z.string().min(1)).min(1).max(4),
   ctaLabel: z.string().min(1),
   /** Pfad zum Bild unter /public. Fehlt es, zeigt die Karte die Initiale. */
-  image: z.string().startsWith('/').or(z.string().startsWith('.')).optional(),
+  image: z.string().min(5).optional(),
   /** KI-Persona für den Chat: Charakter, Tonfall und Fachgebiet dieses Coaches. */
   persona: z.string().min(20),
   /** Erste Nachricht des Coaches, sobald der Chat geöffnet wird. */
