@@ -1,7 +1,7 @@
 # 🐉 coachez — Dragon Ball Coaching Agency
 
 **Sechs Coaches. Ein Versuch.**  
-Eine Dragon-Ball-Fan-SPA, die fünf Charaktere als Coaching-Agentur inszeniert.  
+Eine Dragon-Ball-Fan-SPA, die sechs Charaktere als Coaching-Agentur inszeniert.  
 Alles monochrom — bis auf einen einzigen Farb-Akzent, den du selbst wählst.  
 Mit KI-Chat, jedem Coach auf seine Art.
 

@@ -24,13 +24,13 @@ const rawContent: SiteContent = {
   philosophy: {
     heading: 'Focus on improving, not proving.',
     paragraphs: [
-      'Du willst verkaufen, führen, anziehen, investieren oder einfach dein Leben in die Hand nehmen? Diese fünf machen es möglich – jeder auf seine Art.',
+      'Du willst verkaufen, führen, anziehen, investieren oder einfach dein Leben in die Hand nehmen? Diese sechs machen es möglich – jeder auf seine Art.',
       'Egal ob Immobilie, Finanz, Fitness, Anziehungskraft oder der ganzheitliche Coach: Wer bei coachez vorbeikommt, geht nicht als derselbe Mensch hinaus.',
     ],
   },
   cta: {
     heading: 'Finde deinen Coach.',
-    body: 'Fünf Experten. Ein Versuch. Welcher dazu gehört, erkennst du erst, wenn du dran bist.',
+    body: 'Sechs Experten. Ein Versuch. Welcher dazu gehört, erkennst du erst, wenn du dran bist.',
     buttonLabel: 'Ich versuche es',
   },
 }
