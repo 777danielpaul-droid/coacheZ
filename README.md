@@ -5,6 +5,8 @@
 > Alles monochrom — bis auf einen einzigen Farb-Akzent, den du selbst wählst.  
 > Mit KI-Chat, jedem Coach auf seine Art.
 
+⚡ **Von der Idee zum Prototyp in unter 5 Stunden.**
+
 ## Features
 
 - **Monochrom-Style**: Die gesamte Seite lebt vom Video-Hintergrund und einem einzigen Akzent — keine Ablenkung, nur der Farb-Drop.
