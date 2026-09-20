@@ -3,7 +3,7 @@ export function VideoBackground() {
     <div className="video-bg" aria-hidden="true">
       <video
         className="video-bg__video"
-        src="fireworx.mp4"
+        src="/coacheZ/fireworx.mp4"
         autoPlay
         loop
         muted
