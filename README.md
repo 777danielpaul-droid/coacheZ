@@ -1,6 +1,6 @@
 # 🐉 coachez — Dragon Ball Coaching Agency
 
-**Fünf Coaches. Ein Versuch.**  
+**Sechs Coaches. Ein Versuch.**  
 Eine Dragon-Ball-Fan-SPA, die fünf Charaktere als Coaching-Agentur inszeniert.  
 Alles monochrom — bis auf einen einzigen Farb-Akzent, den du selbst wählst.  
 Mit KI-Chat, jedem Coach auf seine Art.
@@ -11,11 +11,10 @@ Mit KI-Chat, jedem Coach auf seine Art.
 
 ## 🛠️ Tech Stack
 
-![React](https://img.shields.io/badge/React-19.2.7-61DAFB?logo=react&logoColor=black&style=for-the-badge)
-![Vite](https://img.shields.io/badge/Vite-8.1.1-646CFF?logo=vite&logoColor=white&style=for-the-badge)
+![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black&style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white&style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white&style=for-the-badge)
 ![Zod](https://img.shields.io/badge/Zod-3.23-3E67B1?logo=zod&logoColor=white&style=for-the-badge)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.3.2-065D44?logo=tailwindcss&logoColor=white&style=for-the-badge)
 
 ---
 
@@ -48,7 +47,7 @@ Impressum & Datenschutz als Fullscreen-Overlay. Statisch, kein Tracking, kein Ba
 
 ## 🏗️ Architecture & Workflow
 
-Built with **React 19 + Vite + TypeScript**, Zod for runtime validation, and CSS Custom Properties for theming.
+Built with **React 18 + Vite 5 + TypeScript**, Zod for runtime validation, and CSS Custom Properties for theming.
 
 - **`src/schemas/`** — Zod-validated content (animation steps, navigation, training cards, site copy)
 - **`src/components/`** — UI components (Header, BurgerMenu, TrainingCards, HeroAnimation, LegalPages)
@@ -62,11 +61,11 @@ The app follows a **component-driven pattern** with strict separation between co
 
 ## 📊 Technical Specifications
 
-- **Bundle Size**: ~210 KB JS (gzipped ~63 KB)
+- **Bundle Size**: ~250 KB JS (gzipped ~77 KB)
 - **Video**: 1080p, 9s Loop, ~1.2 MB
 - **Animations**: CSS GPU-composited (`transform` / `opacity`)
 - **Accessibility**: `prefers-reduced-motion` honored
-- **Deployment**: GitHub Pages
+- **Deployment**: GitHub Pages (per GitHub Action) oder Render (Static Site)
 - **No Backend**: Static SPA, all state in localStorage
 
 ---
@@ -79,6 +78,14 @@ npm run dev      # local dev server (http://localhost:5173)
 npm run build    # production build
 npm run preview  # preview the build
 ```
+
+### 🚀 Deployment
+
+Gebaut wird immer aus dem Quellcode – Build-Ausgaben (`dist/`) gehören **nicht** ins Repository.
+
+- **GitHub Pages:** Settings → Pages → *Source: **GitHub Actions***. Der Workflow `.github/workflows/deploy.yml` baut bei jedem Push auf `main` und veröffentlicht `dist/`. (Nicht „Deploy from a branch“ wählen – dann wird der Quellcode statt der gebauten Seite ausgeliefert.)
+- **Render / Netlify / Vercel:** Build Command `npm install && npm run build`, Publish Directory `dist`.
+- Bilder und Video liegen in `public/` und werden mit relativen Pfaden geladen (`base: './'` in `vite.config.ts`), funktionieren also auch in Unterverzeichnissen.
 
 ---
 

@@ -1,1 +1,8 @@
 node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+
+# von tsc erzeugte Dateien der Vite-Konfiguration
+vite.config.js
+vite.config.d.ts
