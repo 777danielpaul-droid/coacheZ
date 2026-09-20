@@ -11,10 +11,10 @@ Mit KI-Chat, jedem Coach auf seine Art.
 
 ## 🛠️ Tech Stack
 
-![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black&style=for-the-badge)
-![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white&style=for-the-badge)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white&style=for-the-badge)
-![Zod](https://img.shields.io/badge/Zod-3.23-3E67B1?logo=zod&logoColor=white&style=for-the-badge)
+![React](https://img.shields.io/badge/React-19.3-61DAFB?logo=react&logoColor=black&style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?logo=vite&logoColor=white&style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-7.0-3178C6?logo=typescript&logoColor=white&style=for-the-badge)
+![Zod](https://img.shields.io/badge/Zod-4.6-3E67B1?logo=zod&logoColor=white&style=for-the-badge)
 
 ---
 
@@ -47,7 +47,7 @@ Impressum & Datenschutz als Fullscreen-Overlay. Statisch, kein Tracking, kein Ba
 
 ## 🏗️ Architecture & Workflow
 
-Built with **React 18 + Vite 5 + TypeScript**, Zod for runtime validation, and CSS Custom Properties for theming.
+Built with **React 19 + Vite 8 + TypeScript 7**, Zod for runtime validation, and CSS Custom Properties for theming.
 
 - **`src/schemas/`** — Zod-validated content (animation steps, navigation, training cards, site copy)
 - **`src/components/`** — UI components (Header, BurgerMenu, TrainingCards, HeroAnimation, LegalPages)
@@ -61,7 +61,7 @@ The app follows a **component-driven pattern** with strict separation between co
 
 ## 📊 Technical Specifications
 
-- **Bundle Size**: ~250 KB JS (gzipped ~77 KB)
+- **Bundle Size**: ~358 KB JS (gzipped ~111 KB)
 - **Video**: 1080p, 9s Loop, ~1.2 MB
 - **Animations**: CSS GPU-composited (`transform` / `opacity`)
 - **Accessibility**: `prefers-reduced-motion` honored
@@ -71,6 +71,8 @@ The app follows a **component-driven pattern** with strict separation between co
 ---
 
 ## 📅 Development
+
+Benötigt Node.js ≥ 20.19 oder ≥ 22.12 (Vite 8).
 
 ```bash
 npm install
