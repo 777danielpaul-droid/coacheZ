@@ -1,73 +1,93 @@
-# coachez — Dragon Ball Fanprojekt
+# 🐉 coachez — Dragon Ball Coaching Agency
 
-> **Fünf Coaches. Ein Versuch.**  
-> Eine Dragon-Ball-Fan-SPA, die fünf Charaktere als Coaching-Agentur inszeniert.  
-> Alles monochrom — bis auf einen einzigen Farb-Akzent, den du selbst wählst.  
-> Mit KI-Chat, jedem Coach auf seine Art.
+**Fünf Coaches. Ein Versuch.**  
+Eine Dragon-Ball-Fan-SPA, die fünf Charaktere als Coaching-Agentur inszeniert.  
+Alles monochrom — bis auf einen einzigen Farb-Akzent, den du selbst wählst.  
+Mit KI-Chat, jedem Coach auf seine Art.
 
 ⚡ **Von der Idee zum Prototyp in unter 5 Stunden.**
 
-## Features
+---
 
-- **Monochrom-Style**: Die gesamte Seite lebt vom Video-Hintergrund und einem einzigen Akzent — keine Ablenkung, nur der Farb-Drop.
-- **Custom Accentpicker**: Jede Farbe, die du willst. Linien, Buttons, Glow, Überschrift — alles folgt deiner Wahl.
-- **6 Trainerkarten** mit Gemini-generierten Bildern, Scroll-Animation und eigenem Chat.
-- **Hero-Animation**: Handgezeichnetes "if you try → win / lose / don't try → lose" als SVG-Loop mit Typing-Effekt.
-- **KI-Chat**: OpenAI, Anthropic, Gemini, OpenAI-kompatibel (OpenRouter, Groq, Ollama) — Keys nur im Browser.
-- **Fiktive Werbung**: Jeder Coach wirbt ab und an für sein eigenes Angebot — gekennzeichnet als "Anzeige · fiktiv".
-- **Dark/Light** mit persistentem localStorage und System-Default.
-- **Impressum & Datenschutz** als Fullscreen-Overlay (statisch, kein Tracking, kein Backend).
+## 🛠️ Tech Stack
 
-## Tech-Stack
+![React](https://img.shields.io/badge/React-19.2.7-61DAFB?logo=react&logoColor=black&style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-8.1.1-646CFF?logo=vite&logoColor=white&style=for-the-badge)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white&style=for-the-badge)
+![Zod](https://img.shields.io/badge/Zod-3.23-3E67B1?logo=zod&logoColor=white&style=for-the-badge)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.3.2-065D44?logo=tailwindcss&logoColor=white&style=for-the-badge)
 
-React · Vite · TypeScript · Zod · Three.js (Hero-Animation via SVG) · CSS Custom Properties
+---
 
-## Setup
+## ✨ Key Features
+
+### 🎨 **Monochrom + Custom Accent**
+Die gesamte Seite lebt vom Video-Hintergrund und einem einzigen Akzent.  
+Ein `<input type="color">` steuert Linien, Buttons, Glow und Überschrift — alles folgt deiner Wahl.
+
+### 🐲 **6 Trainerkarten**
+Goku, Vegeta, Roshi, Piccolo, C18 und Gohan — jeder mit eigener Rolle, Persona und Chat.  
+Scroll-Animation mit gestaffeltem Delay, Bilder via Gemini generiert.
+
+### 🎬 **Hero-Animation**
+Handgezeichnetes "if you try → win / lose / don't try → lose" als SVG-Loop.  
+Linien zeichnen sich, Buchstaben tippen sich — alles via CSS-Animationen mit `animationDelay`.
+
+### 💬 **KI-Chat**
+OpenAI, Anthropic, Gemini, OpenAI-kompatibel (OpenRouter, Groq, Ollama).  
+Keys nur im Browser, Streaming via `fetch` + `ReadableStream`.
+
+### 📺 **Video-Hintergrund**
+Festes Feuerwerk-Video (1080p, 9s Loop) — auf der gesamten Seite, nicht nur im Hero.  
+Im Light-Mode per CSS-Filter invertiert.
+
+### 📜 **Legal Pages**
+Impressum & Datenschutz als Fullscreen-Overlay. Statisch, kein Tracking, kein Backend.
+
+---
+
+## 🏗️ Architecture & Workflow
+
+Built with **React 19 + Vite + TypeScript**, Zod for runtime validation, and CSS Custom Properties for theming.
+
+- **`src/schemas/`** — Zod-validated content (animation steps, navigation, training cards, site copy)
+- **`src/components/`** — UI components (Header, BurgerMenu, TrainingCards, HeroAnimation, LegalPages)
+- **`src/context/`** — ThemeContext (Dark/Light + Accent), AiSettingsContext (provider, keys, models)
+- **`src/lib/`** — AI streaming, model detection, persona rules
+- **`src/index.css`** — Design tokens, scroll animations, legal overlay
+
+The app follows a **component-driven pattern** with strict separation between content (schemas), state (contexts), and presentation (components).
+
+---
+
+## 📊 Technical Specifications
+
+- **Bundle Size**: ~210 KB JS (gzipped ~63 KB)
+- **Video**: 1080p, 9s Loop, ~1.2 MB
+- **Animations**: CSS GPU-composited (`transform` / `opacity`)
+- **Accessibility**: `prefers-reduced-motion` honored
+- **Deployment**: GitHub Pages
+- **No Backend**: Static SPA, all state in localStorage
+
+---
+
+## 📅 Development
 
 ```bash
 npm install
-npm run dev       # → http://localhost:5173
-npm run build     # → dist/
-npm run preview
+npm run dev      # local dev server (http://localhost:5173)
+npm run build    # production build
+npm run preview  # preview the build
 ```
 
-## Struktur
+---
 
-```
-src/
-├── components/      # UI-Komponenten (Header, BurgerMenu, TrainingCards, ...)
-├── context/         # ThemeContext, AiSettingsContext
-├── lib/             # ai.ts (Streaming), models.ts, persona.ts
-├── schemas/         # Zod-validierte Inhalte
-│   ├── animation.ts # Timing/Schritte der Hero-Animation
-│   ├── content.ts   # Philosophie + CTA
-│   ├── navigation.ts
-│   └── trainingCards.ts  # Coaches, Personas, Greetings, Starters, Promos
-└── index.css        # Design Tokens, Animationen, Legal-Overlay
-```
+## 📄 License
 
-## Besonderheiten
+Personal Project — Non-commercial use only.
 
-### Monochrom + Akzent
+---
 
-Die Seite nutzt drei CSS-Variablen: `--color-accent`, `--accent-glow`, `--accent-deep`.  
-Alles andere (Hintergrund, Text, Panel) kommt vom Theme (Dark/Light).  
-Ein einziger `<input type="color">` im Burgermenü steuert alles.
+## 💝 Credits
 
-### Hero-Animation
-
-SVG mit 11 Schritten, loopt alle 11 Sekunden via `setInterval` + `key`-Remount.  
-Linien zeichnen sich, Buchstaben tippen sich — alles über CSS-Animationen mit `animationDelay`.
-
-### KI-Chat
-
-- Personas, Begrüßung und Schnellstart-Fragen pro Coach in `trainingCards.ts`.
-- Gemeinsame Regeln für alle Coaches in `lib/persona.ts`.
-- Streaming via `fetch` + `ReadableStream`, Keys im `localStorage`/`sessionStorage`.
-- Gratis-Modelle werden automatisch bevorzugt (Provider-Reihenfolge in `PREFERENCE`).
-- Fiktive Werbung: `every`-Intervall + `offer`-Anweisung, gezählt im Client, nicht vom Modell.
-
-## Lizenz / Hinweis
-
-Fanprojekt, nicht-kommerziell. Keine Verbindung zu Toei Animation, Shueisha oder Bird Studio.  
-Alle Bilder KI-generiert (Google Gemini).
+Created by Daniel Paul (777danielpaul-droid)
