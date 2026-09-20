@@ -6,7 +6,21 @@ function Imprint() {
       <h2 className="legal__heading">Impressum</h2>
       <div className="legal__body">
         <p>
-          <strong>Hinweis:</strong> Diese Webseite ist ein privates, nicht-kommerzielles
+          <strong>Angaben gemäß § 5 TMG:</strong>
+        </p>
+        <p>
+          Daniel Paul<br />
+          Imhoffstuecken 18<br />
+          21423 Winsen
+        </p>
+        <p>
+          <strong>E-Mail:</strong>{' '}
+          <a href="mailto:777danielpaul@gmail.com">777danielpaul@gmail.com</a>
+        </p>
+
+        <h3>Hinweis</h3>
+        <p>
+          Diese Webseite ist ein privates, nicht-kommerzielles
           Fanprojekt und dient ausschließlich Übungszwecken. Sie steht in keiner Verbindung
           zu Toei Animation, Shueisha, Bird Studio oder anderen Rechteinhabern der
           <em> Dragon Ball</em>-Franchise.
@@ -14,7 +28,7 @@ function Imprint() {
 
         <h3>Generierte Inhalte</h3>
         <p>
-          Alle auf dieser Seite verwendeten Bilder wurden künstlich generiert (KI-Genration
+          Alle auf dieser Seite verwendeten Bilder wurden künstlich generiert (KI-Generation
           mittels Google Gemini). Es handelt sich um keine offiziellen Abbildungen,
           Screenshots oder urheberrechtlich geschützte Werke der Originalserie. Die
           Darstellung der Charaktere ist fiktiv und dient der künstlerischen Auseinandersetzung
@@ -41,7 +55,7 @@ function Imprint() {
         <h3>Kontakt</h3>
         <p>
           Für Fragen, Anmerkungen oder Löschwünsche:{' '}
-          <a href="mailto:info@coachez-fanprojekt.example">info@coachez-fanprojekt.example</a>
+          <a href="mailto:777danielpaul@gmail.com">777danielpaul@gmail.com</a>
         </p>
       </div>
     </section>
@@ -92,7 +106,7 @@ function Privacy() {
           Da keine personenbezogenen Daten verarbeitet werden, sind Betroffenenrechte
           (Auskunft, Löschung, Widerspruch) nicht betroffen. Bei Fragen erreichen Sie uns
           unter:{' '}
-          <a href="mailto:info@coachez-fanprojekt.example">info@coachez-fanprojekt.example</a>
+          <a href="mailto:777danielpaul@gmail.com">777danielpaul@gmail.com</a>
         </p>
       </div>
     </section>
