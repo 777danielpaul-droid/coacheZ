@@ -1,3 +1,6 @@
+import { AiError } from './errors'
+import { streamPuter } from './puter'
+
 /**
  * Schlanke, abhängigkeitsfreie Anbindung an mehrere KI-Anbieter.
  * Alle Aufrufe gehen direkt vom Browser an den jeweiligen Anbieter – es gibt
@@ -6,6 +9,7 @@
  */
 
 export type ProviderId =
+  | 'puter'
   | 'openai'
   | 'anthropic'
   | 'gemini'
@@ -25,7 +29,7 @@ export interface ProviderInfo {
   id: ProviderId
   label: string
   /** Wire-Format: Anthropic und Gemini haben eigene APIs, alle anderen sind OpenAI-kompatibel. */
-  kind: 'openai' | 'anthropic' | 'gemini'
+  kind: 'openai' | 'anthropic' | 'gemini' | 'puter'
   /** Standard-Basis-URL (nur für OpenAI-kompatible Anbieter relevant). */
   baseUrl: string
   /** Darf der Nutzer die Basis-URL überschreiben? */
@@ -44,6 +48,26 @@ export interface ProviderInfo {
 export const DEFAULT_CUSTOM_BASE_URL = 'https://openrouter.ai/api/v1'
 
 export const PROVIDERS: ProviderInfo[] = [
+  {
+    id: 'puter',
+    label: 'Gratis – ohne API-Key (Puter)',
+    kind: 'puter',
+    baseUrl: 'https://js.puter.com/v2/',
+    baseUrlEditable: false,
+    defaultModel: 'gpt-5-nano',
+    keyPlaceholder: '',
+    keyHelp: '',
+    keyRequired: false,
+    freeNote:
+      'Läuft über dein kostenloses Puter-Konto (monatliches Gratis-Guthaben). Kleine Modelle wie „nano“ oder „flash-lite“ reichen am längsten.',
+    fallbackModels: [
+      { id: 'gpt-5-nano', free: false },
+      { id: 'gpt-4.1-nano', free: false },
+      { id: 'gemini-3.1-flash-lite', free: false },
+      { id: 'gemini-3-flash-preview', free: false },
+      { id: 'moonshotai/kimi-k2', free: false },
+    ],
+  },
   {
     id: 'openai',
     label: 'OpenAI',
@@ -215,7 +239,7 @@ export interface ActiveAiConfig {
 /** Wie viele der letzten Nachrichten an die API geschickt werden. */
 const MAX_HISTORY = 24
 
-export class AiError extends Error {}
+export { AiError }
 
 interface StreamArgs {
   config: ActiveAiConfig
@@ -234,6 +258,10 @@ export async function streamChat(args: StreamArgs): Promise<void> {
 
   const messages = args.messages.slice(-MAX_HISTORY)
   const model = config.model.trim() || provider.defaultModel
+
+  if (provider.kind === 'puter') {
+    return streamPuter({ model, system: args.system, messages, signal: args.signal, onDelta: args.onDelta })
+  }
 
   let response: Response
   try {

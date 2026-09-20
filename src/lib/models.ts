@@ -1,3 +1,4 @@
+import { listPuterModels } from './puter'
 import {
   AiError,
   describeHttpError,
@@ -32,6 +33,7 @@ const NON_CHAT =
  * Coach-Gespräche ist niedrige Latenz wichtiger als maximale Rechenleistung.
  */
 const PREFERENCE: Record<ProviderId, RegExp[]> = {
+  puter: [/^gpt-5-nano$/, /nano/, /flash-lite/, /mini/],
   openai: [/^gpt-4o-mini$/, /gpt-5[\w.-]*mini/, /mini/],
   anthropic: [/haiku-4-5/, /haiku/, /sonnet/],
   gemini: [/gemini-3[\w.]*-flash(?!-lite)/, /gemini-2\.5-flash$/, /gemini-2\.5-flash(?!-lite)/, /flash-lite/, /gemma/],
@@ -69,6 +71,20 @@ export function pickBestModel(providerId: ProviderId, models: ModelInfo[]): Mode
 export async function loadModels(config: ActiveAiConfig, signal?: AbortSignal): Promise<ModelList> {
   const info = getProvider(config.provider)
   const key = config.apiKey.trim()
+
+  if (info.kind === 'puter') {
+    try {
+      const models = (await listPuterModels()).filter((m) => !NON_CHAT.test(m.id))
+      if (models.length === 0) return fallbackList(config.provider, 'Puter hat keine Modelle geliefert.')
+      return { models, source: 'live' }
+    } catch (err) {
+      if (isAbort(err)) throw err
+      return fallbackList(
+        config.provider,
+        err instanceof AiError ? err.message : 'Die Modellliste konnte nicht von Puter geladen werden.',
+      )
+    }
+  }
 
   if (info.keyRequired && !key) {
     return fallbackList(config.provider, 'Trage einen API-Key ein, um alle verfügbaren Modelle zu laden.')

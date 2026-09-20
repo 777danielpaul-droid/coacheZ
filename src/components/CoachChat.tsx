@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAiSettings } from '../context/AiSettingsContext'
 import { AiError, isAbort, streamChat, type ChatMessage } from '../lib/ai'
+import { loadPuter } from '../lib/puter'
 import { buildSystemPrompt, isPromoTurn } from '../lib/persona'
 import type { TrainingCard } from '../schemas/trainingCards'
 
@@ -37,6 +38,12 @@ export function CoachChat({ card, onClose }: Props) {
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [onClose, settingsOpen])
+
+  // Gratis-Chat (Puter): Bibliothek schon beim Öffnen laden, damit das Anmelde-Popup
+  // beim ersten Senden nicht vom Browser blockiert wird.
+  useEffect(() => {
+    if (config.provider === 'puter') void loadPuter().catch(() => {})
+  }, [config.provider])
 
   // Laufende Antwort abbrechen, wenn der Chat geschlossen wird.
   useEffect(() => () => abortRef.current?.abort(), [])

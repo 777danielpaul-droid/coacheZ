@@ -96,7 +96,12 @@ function Privacy() {
           <strong> direkt an den von Ihnen gewählten KI-Anbieter</strong> (z. B. OpenAI,
           Anthropic, Google oder eine von Ihnen angegebene Adresse). Beim Öffnen der KI-Einstellungen wird außerdem die Liste
           der verfügbaren Modelle beim Anbieter abgefragt. Für diese Verarbeitung
-          gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Bitte geben Sie im Chat
+          gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Standardmäßig nutzt der Chat den Gratis-Dienst
+          <strong> Puter</strong> (puter.com, „User-Pays“-Modell): Dafür wird beim Öffnen eines
+          Chats ein Skript von js.puter.com geladen, Sie melden sich mit einem eigenen (kostenlosen)
+          Puter-Konto an, und Ihre Nachrichten werden über Puter an das jeweilige KI-Modell
+          weitergeleitet. Es gelten die Datenschutzbestimmungen von Puter; der Betreiber dieser
+          Seite erhält weder Ihre Nachrichten noch Ihre Zugangsdaten. Bitte geben Sie im Chat
           keine sensiblen personenbezogenen Daten ein. Die Antworten stammen von einer KI und
           ersetzen keine Fach-, Finanz-, Rechts- oder medizinische Beratung.
         </p>

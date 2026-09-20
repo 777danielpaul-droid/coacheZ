@@ -8,6 +8,7 @@ import {
   streamChat,
   type ProviderId,
 } from '../lib/ai'
+import { loadPuter } from '../lib/puter'
 import { loadModels, pickBestModel, type ModelList } from '../lib/models'
 
 const MAX_ROWS = 150
@@ -42,6 +43,8 @@ export function AiSettingsDialog() {
   const modelRef = useRef(config.model)
   modelRef.current = config.model
   const provider = getProvider(settings.provider)
+  const isPuter = provider.kind === 'puter'
+  const [puterInfo, setPuterInfo] = useState('')
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -137,8 +140,8 @@ export function AiSettingsDialog() {
         </div>
 
         <p className="modal__intro">
-          Hinterlege den API-Key deines KI-Anbieters. Damit chatten die Coaches mit dir – jeder mit
-          eigener Persona.
+          Damit chatten die Coaches mit dir – jeder mit eigener Persona. Nutze den Gratis-Chat über
+          Puter (ohne API-Key) oder hinterlege den API-Key deines KI-Anbieters.
         </p>
 
         <div className="field">
@@ -172,6 +175,38 @@ export function AiSettingsDialog() {
           </div>
         )}
 
+        {isPuter && (
+          <div className="field">
+            <p className="modal__note">
+              Kein API-Key nötig: Der Chat läuft über dein kostenloses Konto bei Puter (puter.com).
+              Beim ersten Senden öffnet sich ein Anmeldefenster; die Nutzung wird über dein
+              monatliches Gratis-Guthaben bei Puter abgerechnet – für den Betreiber dieser Seite
+              entstehen keine Kosten. Beim Öffnen des Chats wird dafür ein Skript von js.puter.com
+              geladen.
+            </p>
+            <div className="field__row">
+              <button
+                type="button"
+                className="btn"
+                onClick={async () => {
+                  setPuterInfo('')
+                  try {
+                    const api = await loadPuter()
+                    await api.auth.signIn()
+                    setPuterInfo('Bei Puter angemeldet.')
+                  } catch {
+                    setPuterInfo('Anmeldung nicht abgeschlossen.')
+                  }
+                }}
+              >
+                Jetzt bei Puter anmelden
+              </button>
+              {puterInfo && <span className="models__status">{puterInfo}</span>}
+            </div>
+          </div>
+        )}
+
+        {!isPuter && (
         <div className="field">
           <label htmlFor="ai-key">API-Key</label>
           <div className="field__row">
@@ -191,6 +226,7 @@ export function AiSettingsDialog() {
           </div>
           <small>Key erhältst du hier: {provider.keyHelp}</small>
         </div>
+        )}
 
         <div className="field">
           <label htmlFor="ai-model-filter">Modell</label>
@@ -275,6 +311,8 @@ export function AiSettingsDialog() {
           <small>{provider.freeNote}</small>
         </div>
 
+        {!isPuter && (
+          <>
         <label className="check">
           <input
             type="checkbox"
@@ -289,6 +327,8 @@ export function AiSettingsDialog() {
           gibt keinen eigenen Server dazwischen. Nutze am besten einen Key mit Ausgabenlimit und
           gib ihn nicht auf fremden oder öffentlichen Geräten ein.
         </p>
+          </>
+        )}
 
         <div className="modal__actions">
           <button
@@ -299,9 +339,11 @@ export function AiSettingsDialog() {
           >
             {test.status === 'running' ? 'Teste …' : 'Verbindung testen'}
           </button>
-          <button type="button" className="btn btn--ghost" onClick={clearKeys}>
-            Alle Keys löschen
-          </button>
+          {!isPuter && (
+            <button type="button" className="btn btn--ghost" onClick={clearKeys}>
+              Alle Keys löschen
+            </button>
+          )}
           <button type="button" className="btn btn--solid" onClick={closeSettings}>
             Fertig
           </button>

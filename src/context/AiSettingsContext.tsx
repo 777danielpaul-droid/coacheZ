@@ -44,7 +44,8 @@ interface AiSettingsContextValue {
 const STORAGE_KEY = 'try-dont-try:ai'
 
 const DEFAULTS: StoredSettings = {
-  provider: 'openai',
+  // Standard: Gratis-Chat ohne Key (Puter). Eigene Keys sind weiterhin möglich.
+  provider: 'puter',
   keys: {},
   models: {},
   baseUrls: {},
@@ -67,7 +68,7 @@ function load(): StoredSettings {
   if (!raw) return DEFAULTS
   try {
     const parsed = JSON.parse(raw) as Partial<StoredSettings> & { baseUrl?: string }
-    const provider = PROVIDERS.some((p) => p.id === parsed.provider) ? parsed.provider! : 'openai'
+    const provider = PROVIDERS.some((p) => p.id === parsed.provider) ? parsed.provider! : DEFAULTS.provider
     return {
       provider,
       keys: parsed.keys && typeof parsed.keys === 'object' ? parsed.keys : {},
@@ -135,9 +136,13 @@ export function AiSettingsProvider({ children }: { children: ReactNode }) {
     }
     // "Eigene URL" gilt als eingerichtet, sobald Key ODER eigene Adresse angegeben ist
     // (lokale Server brauchen keinen Key).
-    const isConfigured = info.keyRequired
-      ? config.apiKey.trim().length > 0
-      : config.apiKey.trim().length > 0 || config.baseUrl.trim().length > 0
+    // Puter braucht keinen Key; "Eigene URL" gilt als eingerichtet, sobald Key ODER
+    // eigene Adresse angegeben ist (lokale Server brauchen keinen Key).
+    const isConfigured =
+      info.kind === 'puter' ||
+      (info.keyRequired
+        ? config.apiKey.trim().length > 0
+        : config.apiKey.trim().length > 0 || config.baseUrl.trim().length > 0)
     return {
       settings,
       config,

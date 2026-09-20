@@ -81,6 +81,15 @@ npm run build    # production build
 npm run preview  # preview the build
 ```
 
+### 🆓 Gratis-Chat ohne API-Key (Puter)
+
+Standardmäßig nutzt der Chat **[Puter.js](https://docs.puter.com)** („User-Pays“): Es gibt **keinen API-Key** und **keinen eigenen Server** – niemand (auch du nicht) zahlt oder hinterlegt einen Key. Wer chattet, meldet sich beim ersten Senden kostenlos bei Puter an, die Nutzung läuft über das monatliche Gratis-Guthaben des eigenen Puter-Kontos.
+
+- Das Skript `js.puter.com` wird erst geladen, wenn ein Chat geöffnet wird (nicht beim Seitenaufruf).
+- Standardmodell: `gpt-5-nano`; alle verfügbaren Modelle stehen in den KI-Einstellungen.
+- Wer lieber einen eigenen Key nutzt (OpenAI, Anthropic, Gemini, Groq …), wählt in den KI-Einstellungen den Anbieter.
+- Code: `src/lib/puter.ts`. Ein Werbe-/Tracking-Blocker, der `js.puter.com` sperrt, verhindert den Gratis-Chat.
+
 ### 🚀 Deployment
 
 Gebaut wird immer aus dem Quellcode – Build-Ausgaben (`dist/`) gehören **nicht** ins Repository.
