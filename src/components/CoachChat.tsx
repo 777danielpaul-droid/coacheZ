@@ -48,12 +48,44 @@ export function CoachChat({ card, onClose }: Props) {
   // Laufende Antwort abbrechen, wenn der Chat geschlossen wird.
   useEffect(() => () => abortRef.current?.abort(), [])
 
-  // Beim Öffnen scrollt die Seite dahinter nicht mit.
+  // Beim Öffnen scrollt die Seite dahinter nicht mit (html UND body, sonst
+  // bleibt auf iOS ein Rest-Scroll übrig).
   useEffect(() => {
-    const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    const { style: htmlStyle } = document.documentElement
+    const { style: bodyStyle } = document.body
+    const prevHtml = htmlStyle.overflow
+    const prevBody = bodyStyle.overflow
+    const prevScrollY = window.scrollY
+    htmlStyle.overflow = 'hidden'
+    bodyStyle.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = previous
+      htmlStyle.overflow = prevHtml
+      bodyStyle.overflow = prevBody
+      window.scrollTo(0, prevScrollY)
+    }
+  }, [])
+
+  // iOS/Android: Öffnet die Bildschirmtastatur, schiebt der Browser oft den
+  // sichtbaren Ausschnitt (visualViewport) nach oben, ohne dass sich am
+  // "fixed" Layout etwas ändert – dadurch scheint der Chat nach unten zu
+  // wandern. Wir messen den sichtbaren Ausschnitt selbst und richten den
+  // Chat danach aus, statt uns auf position: fixed allein zu verlassen.
+  useEffect(() => {
+    const vv = window.visualViewport
+    const root = document.documentElement
+    if (!vv) return
+    const update = () => {
+      root.style.setProperty('--vv-height', `${vv.height}px`)
+      root.style.setProperty('--vv-top', `${vv.offsetTop}px`)
+    }
+    update()
+    vv.addEventListener('resize', update)
+    vv.addEventListener('scroll', update)
+    return () => {
+      vv.removeEventListener('resize', update)
+      vv.removeEventListener('scroll', update)
+      root.style.removeProperty('--vv-height')
+      root.style.removeProperty('--vv-top')
     }
   }, [])
 
