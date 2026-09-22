@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { navigation } from '../schemas/navigation'
 import { AccentPicker } from './AccentPicker'
 import { useAiSettings } from '../context/AiSettingsContext'
 
 export function BurgerMenu() {
   const [open, setOpen] = useState(false)
+  const wrapRef = useRef<HTMLDivElement>(null)
   const { openSettings, isConfigured, providerLabel } = useAiSettings()
 
   useEffect(() => {
@@ -12,12 +13,21 @@ export function BurgerMenu() {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false)
     }
+    const onPointerDown = (event: PointerEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    window.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('pointerdown', onPointerDown)
+    }
   }, [open])
 
   return (
-    <>
+    <div className="burger-wrap" ref={wrapRef}>
       <button
         type="button"
         className="burger"
@@ -33,11 +43,11 @@ export function BurgerMenu() {
 
       <nav
         id="primary-navigation"
-        className={`nav-overlay ${open ? 'nav-overlay--open' : ''}`}
+        className={`nav-dropdown ${open ? 'nav-dropdown--open' : ''}`}
         aria-hidden={!open}
       >
-        <div className="nav-overlay__inner">
-          <ul className="nav-overlay__list">
+        <div className="nav-dropdown__inner">
+          <ul className="nav-dropdown__list">
             {navigation.map((item) => (
               <li key={item.id}>
                 <a href={item.href} onClick={() => setOpen(false)}>
@@ -66,6 +76,6 @@ export function BurgerMenu() {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   )
 }
