@@ -1025,6 +1025,12 @@ a {
 .chat__panel {
   width: min(44rem, 100%);
   height: min(46rem, 100%);
+  /* Bremst ein bekanntes Flexbox-Verhalten aus: Ohne overflow: hidden hier
+     UND min-height: 0 auf dem wachsenden Kind (.chat__list, siehe unten)
+     ignoriert ein Flex-Kind mit viel Inhalt die feste Höhe seines
+     Containers ("min-height: auto" ist der Default) und drückt das ganze
+     Chat-Fenster kurzzeitig nach unten, sobald der Verlauf länger wird. */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background: var(--color-bg);
@@ -1085,6 +1091,7 @@ a {
 
 .chat__list {
   flex: 1;
+  min-height: 0; /* siehe Kommentar bei .chat__panel */
   overflow-y: auto;
   overscroll-behavior: contain;
   display: flex;
