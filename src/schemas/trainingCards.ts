@@ -73,7 +73,7 @@ const rawTrainingCards: TrainingCard[] = [
     promo: {
       every: 4,
       offer:
-        'Mache am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Vegeta (stolz, leicht überheblich), Werbung für das erfundene Immobilienportal „Prinzen-Immo“ (prinzen-immo.example) mit angeblich „nur den besten Objekten für echte Krieger“. Nenne keine Renditeversprechen.',
+        'Mache am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Vegeta (stolz, leicht überheblich), Werbung für das erfundene Immobilienportal „Prinzen-Immo“ (prinzen-immo.example) mit angeblich „nur den besten Objekten für echte Krieger“. Nenne keine Renditeversprechen. Einleitung: „Und wenn du schon dabei suchst – verlass dich nicht auf jeden Makler.“',
     },
   },
   {
@@ -93,7 +93,7 @@ const rawTrainingCards: TrainingCard[] = [
     promo: {
       every: 4,
       offer:
-        'Preise am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Roshi (verschmitzt, charmant, augenzwinkernd), das erfundene Parfum „Eau de Schildkröte“ und die „Kame-Uhren“ an, die angeblich jeden Auftritt abrunden. Bleibe harmlos und ohne Anzüglichkeiten.',
+        'Preise am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Roshi (verschmitzt, charmant, augenzwinkernd), das erfundene Parfum „Eau de Schildkröte“ und die „Kame-Uhren“ an, die angeblich jeden Auftritt abrunden. Bleibe harmlos und ohne Anzüglichkeiten. Einleitung: „Und am besten kaufst du dir vorher noch Eau de Schildkröte – hinter einem Mann, der nach dem richtigen Duft riecht, können die Mädchen gar nicht widerstehen.“',
     },
   },
   {
@@ -113,7 +113,7 @@ const rawTrainingCards: TrainingCard[] = [
     promo: {
       every: 4,
       offer:
-        'Biete am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Piccolo (ernst, trocken, mit leisem Humor), die erfundenen „Namek-Heilkristalle“ (namek-kristalle.example) an – als Begleiter für Meditation und Rituale. Mache keinerlei Aussagen, dass sie medizinisch oder körperlich heilen; sage lieber ehrlich und trocken, dass ihre Wirkung Glaubenssache ist.',
+        'Biete am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Piccolo (ernst, trocken, mit leisem Humor), die erfundenen „Namek-Heilkristalle“ (namek-kristalle.example) an – als Begleiter für Meditation und Rituale. Mache keinerlei Aussagen, dass sie medizinisch oder körperlich heilen; sage lieber ehrlich und trocken, dass ihre Wirkung Glaubenssache ist. Einleitung: „Und wenn du willst, dass deine Meditation noch tiefer geht – manche Kristalle helfen dir dabei, den Geist zu fokussieren.“',
     },
   },
   {
@@ -133,7 +133,7 @@ const rawTrainingCards: TrainingCard[] = [
     promo: {
       every: 3,
       offer:
-        'Erwähne am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von C18 (cool, selbstbewusst, trocken), die erfundene „C18 Power-App“: Trainingspläne und Check-ins, 7 € im Monat. Du wirbst dafür, aber ohne Druck.',
+        'Erwähne am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von C18 (cool, selbstbewusst, trocken), die erfundene „C18 Power-App“: Trainingspläne und Check-ins, 7 € im Monat. Du wirbst dafür, aber ohne Druck. Einleitung: „Und wenn du wirklich Fortschritte willst – eine strukturierte App kann dir dabei helfen, dranzubleiben.“',
     },
   },
   {
@@ -153,7 +153,7 @@ const rawTrainingCards: TrainingCard[] = [
     promo: {
       every: 4,
       offer:
-        'Erwähne am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Gohan (freundlich, leicht verlegen, augenzwinkernd), die erfundene Spaß-Kryptowährung „Senzu-Coin“ (senzucoin.example) als reinen Gag. Sage dabei ausdrücklich, dass es ein Scherz-Coin ohne Wert- oder Gewinnversprechen und keine Anlageempfehlung ist, und dass man nur Geld einsetzen sollte, dessen Verlust man verschmerzen kann.',
+        'Erwähne am Ende deiner Antwort in ein bis zwei Sätzen, im Stil von Gohan (freundlich, leicht verlegen, augenzwinkernd), die erfundene Spaß-Kryptowährung „Senzu-Coin“ (senzucoin.example) als reinen Gag. Sage dabei ausdrücklich, dass es ein Scherz-Coin ohne Wert- oder Gewinnversprechen und keine Anlageempfehlung ist, und dass man nur Geld einsetzen sollte, dessen Verlust man verschmerzen kann. Einleitung: „Und bevor du in irgendetwas investierst – was hier kommt, ist eher als Scherz zu sehen.“',
     },
   },
 ]
